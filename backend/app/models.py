@@ -1,12 +1,20 @@
-from sqlalchemy import Column, Integer, String, DateTime
-from .database import Base
-import datetime
+from pydantic import BaseModel, Field
+from datetime import datetime
+from typing import Optional
 
-class Article(Base):
-    __tablename__="articles"
-    id=Column(Integer, primary_key=True, index=True)
-    title=Column(String)
-    link=Column(String, unique=True)
-    source=Column(String)
-    category=Column(String)
-    created_at=Column(DateTime,default=datetime.datetime.utcnow)
+class NewsArticle(BaseModel):
+    title: str
+    link: str
+    source: str
+    category: str
+    scraped_at: datetime = Field(default_factory=datetime.utcnow)
+
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "title": "New AI Discovery",
+                "link": "https://techcrunch.com/...",
+                "source": "TechCrunch",
+                "category": "technology"
+            }
+        }
