@@ -2,8 +2,6 @@ from fastapi import FastAPI
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
-
-# FIX: Import from the current folder (.)
 from .controller import router as news_router
 from .engine import run_news_scraper
 

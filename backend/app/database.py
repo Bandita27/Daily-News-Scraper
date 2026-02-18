@@ -1,17 +1,18 @@
+import motor.motor_asyncio
 import os
 from dotenv import load_dotenv
-# Corrected spelling: 'asyncio' NOT 'asynchio'
-from motor.motor_asyncio import AsyncIOMotorClient 
 
 load_dotenv()
 
-# Define MONGO_DETAILS before using it
-MONGO_DETAILS = os.getenv("DATABASE_URL")
+# 1. Get your MongoDB URI from .env or use a default
+MONGO_DETAILS = os.getenv("MONGO_DETAILS", "mongodb://localhost:27017")
 
-if not MONGO_DETAILS:
-    MONGO_DETAILS = "mongodb://localhost:27017"
+# 2. Initialize the Client
+client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_DETAILS)
 
-# Now use the variable
-client = AsyncIOMotorClient(MONGO_DETAILS)
-database = client.news_db
-news_collection = database.get_collection("articles")
+# 3. Define the 'db' variable (This was missing!)
+db = client.news_database
+
+# 4. Define your collections
+news_collection = db.get_collection("news_links")
+users_collection = db.get_collection("users") # Now 'db' is defined!

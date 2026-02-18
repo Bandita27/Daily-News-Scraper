@@ -11,5 +11,6 @@ dependencies = [
     "fastapi[standard]>=0.129.0",
     "httpx>=0.28.1",
     "motor>=3.7.1",
+    "passlib[bcrypt]>=1.7.4",
     "psycopg2-binary>=2.9.11",
 ]
