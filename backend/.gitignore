@@ -1,6 +1,4 @@
 # Python-generated files
-.env 
-__pycache__/
 *.db
 venv/
 *.py[oc]
@@ -8,6 +6,9 @@ build/
 dist/
 wheels/
 *.egg-info
-
+.env
+node_modules/
+__pycache__/
+.venv/
 # Virtual environments
 .venv
